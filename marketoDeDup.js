@@ -67,10 +67,37 @@ qLeads.load(function (err) {
 				//  assuming here that find will only ever return ONE record.
 				var currentRecordDate = new Date(results[0].entryDate);
 				if (newDate.getTime() > currentRecordDate.getTime()) {
+					console.log("New time: " + newDate.getTime() + " old: " + currentRecordDate.getTime());
 					// update the current record.
 					// We're sure date is different, so start with that
 					var logMsg = "Updating id: " + leads[exKey]._id + " new entry Date: " + leads[exKey].entryDate;
 					qLeads.update({ _id: leads[exKey]._id }, { entryDate: leads[exKey].entryDate });
+					// check the rest of the fields -- there should be a way to make a function for this :/
+					// First name
+					if (leads[exKey].firstName != results[0].firstName) {
+						logMsg += "\n\t\tFirst name from: " + results[0].firstName + " to: " + leads[exKey].firstName;
+						qLeads.update({ _id: leads[exKey]._id }, { firstName: leads[exKey].firstName });
+					}
+					// First name
+					if (leads[exKey].lastName != results[0].lastName) {
+						logMsg += "\n\t\tLast name from: " + results[0].lastName + " to: " + leads[exKey].lastName;
+						qLeads.update({ _id: leads[exKey]._id }, { lastName: leads[exKey].lastName });
+					}
+					// Check address
+					if (leads[exKey].address != results[0].address) {
+						logMsg += "\n\t\tAddress from: " + results[0].address + " to: " + leads[exKey].address;
+						qLeads.update({ _id: leads[exKey]._id }, { address: leads[exKey].address });
+					}
+					// Check email
+					if (leads[exKey].email != results[0].email) {
+						logMsg += "\n\t\tEmail from: " + results[0].email + " to: " + leads[exKey].email;
+						qLeads.update({ _id: leads[exKey]._id }, { email: leads[exKey].email });
+					}
+					// Lastly, it is possible for ID to change
+					if (leads[exKey]._id != results[0]._id) {
+						logMsg += "\n\t\tID from: " + results[0]._id + " to: " + leads[exKey]._id;
+						qLeads.update({ _id: leads[exKey]._id }, { _id: leads[exKey]._id });
+					}
 					Logger.message(logMsg);
 				}
 			}
