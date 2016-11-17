@@ -68,7 +68,10 @@ qLeads.load(function (err) {
 				var currentRecordDate = new Date(results[0].entryDate);
 				if (newDate.getTime() > currentRecordDate.getTime()) {
 					// update the current record.
-					Logger.message("updating record");
+					// We're sure date is different, so start with that
+					var logMsg = "Updating id: " + leads[exKey]._id + " new entry Date: " + leads[exKey].entryDate;
+					qLeads.update({ _id: leads[exKey]._id }, { entryDate: leads[exKey].entryDate });
+					Logger.message(logMsg);
 				}
 			}
 		}  // END for loop on new records
