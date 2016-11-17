@@ -67,8 +67,10 @@ qLeads.load(function (err) {
 				//  assuming here that find will only ever return ONE record.
 				var currentRecordDate = new Date(results[0].entryDate);
 				if (newDate.getTime() > currentRecordDate.getTime()) {
-					// update the current record.
-					Logger.message("updating record");
+					// update the current record. 
+					// We already know dates aren't equal, so update that
+					qLeads.update({ '$or': [{ '_id': results[0]._id }, { 'email': results[0].email }], { 'entryDate': leads[exKey].entryDate });
+					Logger.message("Id: " + leads[exKey]._id + " email: " + leads[exKey].email + " entryDate updated to: " + leads[exKey].entryDate);
 				}
 			}
 		}  // END for loop on new records

@@ -11,3 +11,7 @@
 2016-11-16T23:24:46.990Z: updating record
 2016-11-16T23:24:46.993Z: updating record
 2016-11-16T23:24:47.006Z: Output file saved. Buh bye
+2016-11-17T00:14:37.210Z: Processor START
+2016-11-17T00:14:37.228Z: Loaded saved records
+2016-11-17T00:19:13.359Z: Processor START
+2016-11-17T00:19:13.376Z: Loaded saved records
