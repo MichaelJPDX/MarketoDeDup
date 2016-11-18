@@ -20,8 +20,16 @@ Leads record layout:
 Run this JS using node, eg:
 node marketoDeDup.js
 
+Command-line options:
+
+verbose	Print log output to console (in addition to log file)
+
+show	Print results to console at end
+
 Activity is logged to the file changeLog.txt
 
 Data is stored by Forerunner in myleads-qualifiedLeads-metaData.fdb and myleads-qualifiedLeads.fdb
+
+Formatted output is stored to Output is written to qualifiedLeads.json
 
 To start from "scratch" be sure to remove changeLog.txt and *.fdb from your cloned project before testing!
